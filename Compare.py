@@ -5,9 +5,10 @@ import math
 
 startTime = time.perf_counter()
 
-def Compare(s1, s2):
+difflist = []
+def Compare(s1, s2, alist):
     difference = abs(float(s1)-float(s2))
-    print(difference)
+    alist.append(difference)
 
 
 
@@ -15,8 +16,16 @@ with open('test.txt') as csv_file:
 
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_number = 0
+
     for row in csv_reader:
-        Compare(row[1],row[2])
+        for i in range(2):
+            Compare(row[i],row[i+1],difflist)
+
+    print(difflist)
+
+        
+
+
             
 
 
