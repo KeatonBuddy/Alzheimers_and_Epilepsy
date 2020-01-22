@@ -12,43 +12,27 @@ def Compare(s1, s2, alist):
 
 
 
-with open('test.txt') as csv_file:
+with open('data1.csv') as csv_file:
 
     csv_reader = csv.DictReader(csv_file)
-    line_number = 0
+
     header = csv_reader.fieldnames
+
+
     for row in csv_reader:
+
         for i in range(3):
             print(header[i])
             print(row[f'{header[i]}'])
+
             diffdict.setdefault(header[i],[])
-            diffdict[header[i]].append(row[f'{header[i]}'])
+            if header[i] == 'epilepsy genes':
+                diffdict[header[i]].append(row[f'{header[i]}'])
+            else:
+                diffdict[header[i]].append(float(row[f'{header[i]}']))
+
     print(diffdict)
-
-        
-        
-        
-        
-        #for i in range(3):
-         #   print(row.)
-
-
-        
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
 endTime = time.perf_counter()
 
