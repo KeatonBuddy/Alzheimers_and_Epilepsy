@@ -21,9 +21,7 @@ with open('data1.csv') as csv_file:
 
     for row in csv_reader:
 
-        for i in range(3):
-            print(header[i])
-            print(row[f'{header[i]}'])
+        for i in range(7):
 
             diffdict.setdefault(header[i],[])
             if header[i] == 'epilepsy genes':
@@ -31,7 +29,16 @@ with open('data1.csv') as csv_file:
             else:
                 diffdict[header[i]].append(float(row[f'{header[i]}']))
 
-    print(diffdict)
+
+
+    for headers in diffdict:
+        if headers.isdigit():
+            for i in range(len(diffdict[headers])):
+                print(diffdict[headers][i])
+                print(diffdict[headers][i+1])
+                
+                
+
       
 
 endTime = time.perf_counter()
