@@ -18,9 +18,9 @@ with open(nodem_file) as csvfile:
         else:
             for i in range (2,53):
                 sum_of_gene += float(row[i])
-                print(f'\t{row[0]} has expressions {row[i]}.')
+                #print(f'\t{row[0]} has expressions {row[i]}.')
             mean_of_gene = sum_of_gene/50
-            print('And the mean is'+str(mean_of_gene))
+            print(f'\t{row[0]} And the mean is'+str(mean_of_gene))
             sum_of_gene = 0
             line_count += 1
     
