@@ -2,44 +2,33 @@ import concurrent.futures
 import time
 import csv
 import math
+import pandas
 
 startTime = time.perf_counter()
 
-diffdict = {}
-def Compare(s1, s2, alist):
-    difference = abs(float(s1)-float(s2))
-    alist.append(difference)
+
+def findNumCol(pandaFile):
+    numCol = pandaFile.shape[1]-2
+    return numCol
+
+
+def Compare(x1,x2,s1,s2,n1,n2):
+
+    t = (x1 - x2) / (math.sqrt( ((s1 ** 2 )/ n1)  +  ((s2 ** 2 )/ n2)  ))
+    dof = n1 + n2 -2
+    return [t,dof]
+
+alz_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\finalsheet_demalz.csv")
+noDem_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\finalsheet_nodem.csv")
+mean_alz_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\mean_alz_file.csv")
+mean_noDem_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\mean_n0dem_file.csv")
+
+
+print( Compare(mean_alz_file["Mean"][0] , mean_noDem_file["Mean"][0], mean_alz_file["STD"][0] , mean_noDem_file["STD"][0], findNumCol(alz_file), findNumCol(noDem_file) ) )
 
 
 
-with open('data1.csv') as csv_file:
 
-    csv_reader = csv.DictReader(csv_file)
-
-    header = csv_reader.fieldnames
-
-
-    for row in csv_reader:
-
-        for i in range(7):
-
-            diffdict.setdefault(header[i],[])
-            if header[i] == 'epilepsy genes':
-                diffdict[header[i]].append(row[f'{header[i]}'])
-            else:
-                diffdict[header[i]].append(float(row[f'{header[i]}']))
-
-
-
-    for headers in diffdict:
-        if headers.isdigit():
-            for i in range(len(diffdict[headers])):
-                print(diffdict[headers][i])
-                print(diffdict[headers][i+1])
-                
-                
-
-      
 
 endTime = time.perf_counter()
 
