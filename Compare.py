@@ -14,7 +14,7 @@ def findNumCol(pandaFile):
 
 def Compare(x1,x2,s1,s2,n1,n2):
 
-    t = (x1 - x2) / (math.sqrt( ((s1 ** 2 )/ n1)  +  ((s2 ** 2 )/ n2)  ))
+    t = abs((x1 - x2) / (math.sqrt( ((s1 ** 2 )/ n1)  +  ((s2 ** 2 )/ n2)  )))
     dof = n1 + n2 -2
     return [t,dof]
 
