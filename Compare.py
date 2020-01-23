@@ -24,7 +24,6 @@ mean_alz_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Al
 mean_noDem_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\mean_n0dem_file.csv")
 
 
-print(mean_alz_file.shape[0])
 with open('ComparedFile.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["T-Score","DOF"])
