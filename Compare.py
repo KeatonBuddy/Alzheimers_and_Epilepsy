@@ -24,7 +24,15 @@ mean_alz_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Al
 mean_noDem_file = pandas.read_csv(r"C:\Users\sagor\Desktop\MDSC 397\project\ABA Alz\MDSC-397-master\mean_n0dem_file.csv")
 
 
-print( Compare(mean_alz_file["Mean"][0] , mean_noDem_file["Mean"][0], mean_alz_file["STD"][0] , mean_noDem_file["STD"][0], findNumCol(alz_file), findNumCol(noDem_file) ) )
+print(mean_alz_file.shape[0])
+with open('ComparedFile.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["T-Score","DOF"])
+    for i in range (mean_alz_file.shape[0]):
+        d = Compare(mean_alz_file["Mean"][i] , mean_noDem_file["Mean"][i], mean_alz_file["STD"][i] , mean_noDem_file["STD"][i], findNumCol(alz_file), findNumCol(noDem_file) )
+        writer.writerow(d)
+
+        
 
 
 
