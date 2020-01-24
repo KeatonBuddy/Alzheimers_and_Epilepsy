@@ -43,7 +43,7 @@ def findMeanandStd(dem_file):
                             s = s + (float(row[i]),)
                         hello = statistics.stdev(s)
                         print("Standard Deviation of sample is % s " % (hello)) 
-                        mean_of_gene = sum_of_gene/columns -2
+                        mean_of_gene = sum_of_gene/(columns -2)
                         print(f'\t{row[0]} And the mean is'+str(mean_of_gene))
 
                         writer.writerow([mean_of_gene, hello])
