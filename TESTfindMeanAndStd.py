@@ -67,7 +67,7 @@ def Compare(x1,x2,s1,s2,n1,n2):
 
 
 
-def processFile(inputFile1, inputFile2,outputFile):
+def processFile(inputFile1, inputFile2):
 
     
     alz_file = pandas.read_csv(inputFile1)
@@ -75,7 +75,7 @@ def processFile(inputFile1, inputFile2,outputFile):
     mean_alz_file = pandas.read_csv(findMeanandStd(inputFile1))
     mean_noDem_file = pandas.read_csv(findMeanandStd(inputFile2))
 
-    with open(f'{outputFile}', 'w', newline='') as file:
+    with open(f'Results-{inputFile1}_+_{inputFile2}', 'w', newline='') as file:
 
         writer = csv.writer(file)
         writer.writerow(["T-Score","DOF"])
@@ -94,8 +94,7 @@ def processFile(inputFile1, inputFile2,outputFile):
         
         
             writer.writerow(d)
+if __name__ == '__main__':
 
-
-#with concurrent.futures.ProcessPoolExecutor() as executor:
-for i in range(len(inputFileList)):
-    processFile(inputFileList[i][0],inputFileList[i][1], "results.csv")
+    for i in range(len(inputFileList)):
+        processFile(inputFileList[i][0],inputFileList[i][1])
