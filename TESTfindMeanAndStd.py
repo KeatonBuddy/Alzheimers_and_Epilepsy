@@ -98,4 +98,4 @@ def processFile(inputFile1, inputFile2,outputFile):
 
 #with concurrent.futures.ProcessPoolExecutor() as executor:
 for i in range(len(inputFileList)):
-    processFile(inputFileList[i][0],inputFileList[i][1], "results.csv")
+    processFile(inputFileList[i][0],inputFileList[i][1], f"results-{inputFileList[i]}.csv")
