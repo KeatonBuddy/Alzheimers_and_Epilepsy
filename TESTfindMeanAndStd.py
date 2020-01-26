@@ -32,10 +32,10 @@ def findMeanandStd(dem_file):
 
         with open(f"output-{dem_file}", 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Mean","STD"])
+            writer.writerow(["Gene", "Mean","STD"])
 
             for row in csv_reader:
-                if line_count < 1:
+                if line_count <= 1:
                     line_count += 1
                 else:
                         for i in range (2,int(columns)):
@@ -46,7 +46,7 @@ def findMeanandStd(dem_file):
                         mean_of_gene = sum_of_gene/(columns -2)
                         print(f'\t{row[0]} And the mean is'+str(mean_of_gene))
 
-                        writer.writerow([mean_of_gene, hello])
+                        writer.writerow([row[0], mean_of_gene, hello])
                         s = ()
                         sum_of_gene = 0
                         line_count += 1
@@ -67,7 +67,7 @@ def Compare(x1,x2,s1,s2,n1,n2):
 
 
 
-def processFile(inputFile1, inputFile2):
+def processFile(inputFile1, inputFile2,outputFile):
 
     
     alz_file = pandas.read_csv(inputFile1)
@@ -75,13 +75,13 @@ def processFile(inputFile1, inputFile2):
     mean_alz_file = pandas.read_csv(findMeanandStd(inputFile1))
     mean_noDem_file = pandas.read_csv(findMeanandStd(inputFile2))
 
-    with open(f'Results-{inputFile1}_+_{inputFile2}', 'w', newline='') as file:
+    with open(f'{outputFile}', 'w', newline='') as file:
 
         writer = csv.writer(file)
-        writer.writerow(["T-Score","DOF"])
+        writer.writerow(["Gene","T-Score","DOF"])
 
 
-        for i in range (mean_alz_file.shape[0]):
+        for i in range (1,mean_alz_file.shape[0]):
 
 
             d = Compare(mean_alz_file["Mean"][i] , 
@@ -90,11 +90,13 @@ def processFile(inputFile1, inputFile2):
                         mean_noDem_file["STD"][i], 
                         findNumCol(alz_file), 
                         findNumCol(noDem_file) )
-        
-        
-        
-            writer.writerow(d)
-if __name__ == '__main__':
 
-    for i in range(len(inputFileList)):
-        processFile(inputFileList[i][0],inputFileList[i][1])
+        
+        
+        
+            writer.writerow([mean_alz_file["Gene"][i],d[0],d[1]])
+
+
+#with concurrent.futures.ProcessPoolExecutor() as executor:
+for i in range(len(inputFileList)):
+    processFile(inputFileList[i][0],inputFileList[i][1], f"results-{inputFileList[i]}.csv")
