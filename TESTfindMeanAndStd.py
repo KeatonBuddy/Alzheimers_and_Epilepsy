@@ -35,7 +35,7 @@ def findMeanandStd(dem_file):
             writer.writerow(["Gene", "Mean","STD"])
 
             for row in csv_reader:
-                if line_count <= 1:
+                if line_count < 1:
                     line_count += 1
                 else:
                         for i in range (2,int(columns)):
