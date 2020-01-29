@@ -81,7 +81,7 @@ def processFile(inputFile1, inputFile2,outputFile):
         writer.writerow(["Gene","T-Score","DOF"])
 
 
-        for i in range (1,mean_alz_file.shape[0]):
+        for i in range (0,mean_alz_file.shape[0]):
 
 
             d = Compare(mean_alz_file["Mean"][i] , 
