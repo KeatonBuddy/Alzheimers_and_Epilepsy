@@ -2,6 +2,8 @@
 ## Project Overview
 This project investigates the genetic relationship between Alzheimer’s disease and epilepsy, aiming to identify genes whose expressions overlap significantly in these conditions. Recent epidemiological studies suggest increased epilepsy risk in Alzheimer’s patients, hinting at common genetic factors. By uncovering genes with similar expression patterns in both diseases, this project seeks to facilitate the development of treatments effective for both conditions.
 
+*This work was conducted to fulfill the MDSC 397 course requirement at the University of Calgary*
+
 ## Objectives
 - Identify genetic expression similarities between Alzheimer's and epilepsy.
 
